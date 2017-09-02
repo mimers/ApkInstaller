@@ -1,0 +1,8 @@
+[
+    { "caption": "-", "id": "apk_installer" },
+    { "command": "install_apk_wrapper", "caption": "Install Directly"},
+    { "command": "uninstall_apk_wrapper", "caption": "Uninstall Existing"},
+    { "command": "uninstall_then_install_apk_wrapper", "caption": "Uninstall Existing Then Install"},
+    { "command": "clear_data_wrapper", "caption": "Clear Data"},
+    { "command": "clear_data_then_install_apk_wrapper", "caption": "Clear Data Then Install" }
+]
