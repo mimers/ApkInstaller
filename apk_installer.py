@@ -205,8 +205,6 @@ class ApkView(object):
 		self.error = False
 		self.view.run_command("content", {"data": view_content})
 
-
-
 def openApkFile(path):
 	success, badging = executeCmd(['aapt', 'd', 'badging', path])
 	if not success:
@@ -283,19 +281,29 @@ def try_run_cmd_for_view(view, cmd):
 class InstallApkWrapperCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		try_run_cmd_for_view(self.view, 'install_apk')
+	def is_visible(self):
+		return get_apk_view(self.view) != None
 
 class UninstallApkWrapperCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		try_run_cmd_for_view(self.view, 'uninstall_apk')
+	def is_visible(self):
+		return get_apk_view(self.view) != None
 
 class UninstallThenInstallApkWrapperCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		try_run_cmd_for_view(self.view, 'uninstall_then_install_apk')
+	def is_visible(self):
+		return get_apk_view(self.view) != None
 
 class ClearDataWrapperCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		try_run_cmd_for_view(self.view, 'clear_data')
+	def is_visible(self):
+		return get_apk_view(self.view) != None
 
 class ClearDataThenInstallApkWrapperCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
 		try_run_cmd_for_view(self.view, 'clear_data_then_install_apk')
+	def is_visible(self):
+		return get_apk_view(self.view) != None

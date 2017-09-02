@@ -1,3 +1,4 @@
 {
-	"aapt": "c:\\Users\\super\\tools\\android_sdk\\build-tools\\26.0.0\\aapt"
+	"aapt": "aapt",
+	"adb": "adb"
 }
