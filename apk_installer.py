@@ -41,12 +41,12 @@ def get_settings_value(settings, key, default):
 
 def executeCmd(cmd):
 	try:
-		print('executing %s' % cmd)
 		settings = sublime.active_window().active_view().settings()
 		setting_value = get_settings_value(settings, cmd[0], cmd[0])
 		if setting_value != cmd[0]:
 			print(setting_value)
 			cmd[0] = setting_value
+		print('executing %s' % cmd)
 		proc = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = proc.communicate()
 		out = decode(out)
@@ -178,14 +178,17 @@ class ApkView(object):
 			print(badging)
 			self.view.run_command("content", {"data": view_content})
 			return
-		if targetSdk and appName and nativeCode and sdkVersion:
+		if targetSdk and appName and sdkVersion:
 			self.package = packageInfo['name']
 			self.label = appName[1]
 			self.version_name = packageInfo['versionName']
 			self.version_code = packageInfo['versionCode']
 			self.min_sdk_version = sdkVersion[1]
 			self.target_sdk_version = targetSdk[1]
-			self.native_code = nativeCode[1].replace('\'', '')
+			if nativeCode:
+				self.native_code = nativeCode[1].replace('\'', '')
+			else:
+				self.native_code = '[pure java app]'
 			self.file_size = self.sizeof_fmt(os.stat(self.apk_path).st_size)
 		else:
 			print(badging)
